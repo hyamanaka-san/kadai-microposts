@@ -1,3 +1,5 @@
+<%# トップページindex%>
+
 <% if logged_in? %>
   <div class="row">
     <aside class="col-sm-4">
@@ -10,6 +12,8 @@
     </aside>
     <div class="col-sm-8">
       <%= render 'microposts/microposts', microposts: @microposts %>
+
+      <%#↑このファイルの中にお気に入りを入れる @micropostsはどこからきているか？コントローラーの %>
     </div>
   </div>
 <% else %>

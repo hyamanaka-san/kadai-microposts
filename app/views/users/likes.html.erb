@@ -1,0 +1,23 @@
+
+   <div class="page-header"><h1><small>登録番号<%= @user.id %>番：<%=  @user.name %> のお気に入りリスト</small></h1></div> 
+
+<ul class="list-unstyled">
+  <% @likes.each do |like| %> <%#= ←この@likesはusersコントローラーのlikesメソッドから %>
+      <%#= p @likes %>
+      　<%#= p like %>
+  
+    <li class="media mb-3">
+      <img class="mr-2 rounded" src="<%= gravatar_url(like.user, { size: 50 }) %>" alt="">
+      <div class="media-body">
+        <div>
+          <%= link_to like.user.name, user_path(like.user) %> <span class="text-muted">posted at <%= like.created_at %></span>
+        </div>
+        <div>
+          <p class="mb-0"><%= like.content %></p>
+        </div>
+        <div>
+     </div>
+     </div>
+    </li>
+  <% end %>
+

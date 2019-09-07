@@ -4,6 +4,8 @@ class ToppagesController < ApplicationController
       @micropost = current_user.microposts.build  # form_with 用
       
       @microposts = current_user.feed_microposts.order(id: :desc).page(params[:page])
+     # p @micropsts
+     # raise
     end
   end
 end
