@@ -15,7 +15,10 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
+    # ifでお気に入りの有無を分岐させる必要はないのか？
+    current_user.unfavorite(@micropost)
     @micropost.destroy
+
     flash[:success] = 'メッセージを削除しました。'
     redirect_back(fallback_location: root_path)
   end
