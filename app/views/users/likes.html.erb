@@ -1,10 +1,55 @@
 
-   <div class="page-header"><h1><small>登録番号<%= @user.id %>番：<%=  @user.name %> のお気に入りリスト</small></h1></div> 
+<div class="row">
+  <aside class="col-sm-4">
+    <div class="card">
+        <div class="card-header">
+          <h3 class="card-title"><%= @user.name %></h3>
+        </div>
+      
+        <div class="card-body">
+          <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        </div>
+    </div>
+    
+    <%= render 'relationships/follow_button', user: @user %>
+    <%= render 'likes_button' %>
+    
+  </aside>
+  
+  <div class="col-sm-8">  
+  
+     <%= render 'layouts/navigate' %> 
 
+  <ul class="list-unstyled">
+      <% @likes.each do |like| %> <%#= ←この@likesはusersコントローラーのlikesメソッドから %>
+        <%#= p @likes %>
+      <li class="media mb-3">
+        <img class="mr-2 rounded" src="<%= gravatar_url(like.user, { size: 50 }) %>" alt="">
+        <div class="media-body">
+          <div>
+            <%= link_to like.user.name, user_path(like.user) %> <span class="text-muted">posted at <%= like.created_at %></span>
+          </div>
+            
+          <div>
+            <p class="mb-0"><%= like.content %></p>
+            <%= render 'favorites/favorite',micropost: like %>
+          </div>
+         </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+  
+<%# ----------以下ナビゲーションの中に入れたので使わない----------- %>
+  
+<% if false %>
+ <div class="page-header"><h1><small>登録番号<%= @user.id %>番：<%=  @user.name %> のお気に入りリスト</small></h1></div> 
 <ul class="list-unstyled">
   <% @likes.each do |like| %> <%#= ←この@likesはusersコントローラーのlikesメソッドから %>
       <%#= p @likes %>
-      　<%#= p like %>
+      
   
     <li class="media mb-3">
       <img class="mr-2 rounded" src="<%= gravatar_url(like.user, { size: 50 }) %>" alt="">
@@ -14,10 +59,12 @@
         </div>
         <div>
           <p class="mb-0"><%= like.content %></p>
+          <%= render 'favorites/favorite',micropost: like %>
         </div>
         <div>
      </div>
      </div>
     </li>
   <% end %>
+<% end %>
 

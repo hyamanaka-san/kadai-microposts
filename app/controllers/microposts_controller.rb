@@ -16,7 +16,7 @@ class MicropostsController < ApplicationController
 
   def destroy
     # ifでお気に入りの有無を分岐させる必要はないのか？
-    current_user.unfavorite(@micropost)
+    # current_user.unfavorite(@micropost)これだと複数の時にエラー
     @micropost.destroy
 
     flash[:success] = 'メッセージを削除しました。'

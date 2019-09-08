@@ -17,7 +17,9 @@
           
           
         <%#  お気に入りボタン %>
-        <%#= render 'favorites/favorite',microposts: @microposts %>
+        <%= render 'favorites/favorite',micropost: micropost %>
+        
+<% if false %><%# favorites/favorite でパーシャル化したので使わない %>
         <% if current_user.favoriting?(micropost) %> <%# ← micropost.idとかやってハマった%>
             <%= form_with(model: current_user.favorites.find_by(micropost_id: micropost.id), local: true, method: :delete) do |f| %>
               <%= hidden_field_tag :micropost_id,  micropost.id %>
@@ -33,6 +35,7 @@
 
             <% end %>
         <% end %>
+<% end %><%# favorites/favorite ここまで %>
 
       </div>
     </div>
